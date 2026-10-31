@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер привычек Bubble</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bubble-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <main class="app" id="mainScreen">
+        <h1 class="title">Bubble</h1>
+        <p class="subtitle">Трекер привычек</p>
+
+        <div class="main-buttons">
+            <button class="btn btn-primary big" id="createBtn">Создать карточку
+привычки</button>
+            <button class="btn btn-secondary big" id="viewBtn">Посмотреть
+карточки</button>
+        </div>
+    </main>
+
+    <div class="modal-overlay hidden" id="createModal">
+        <div class="modal">
+            <h2>Новая привычка</h2>
+            <label for="newName">Название привычки</label>
+            <input type="text" id="newName" placeholder="Например: Пить воду">
+
+            <label for="newDuration">Длительность (дней)</label>
+            <input type="number" id="newDuration" value="30" min="1">
+
+            <div class="modal-actions">
+                <button class="btn btn-ghost" data-close="createModal">Отмена</button>
+                <button class="btn btn-primary" id="saveHabitBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="app wide hidden" id="cardsScreen">
+        <div class="cards-header">
+            <h2>Карточки привычек</h2>
+            <button class="btn btn-ghost small" id="backBtn">← Назад</button>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Поиск привычки...">
+            <button class="btn btn-secondary" id="searchBtn">Поиск</button>
+        </div>
+
+        <ul class="habit-list" id="habitList"></ul>
+        <p class="empty-msg hidden" id="emptyMsg">Пока нет привычек. Создайте первую!</p>
+
+        <div class="cards-actions">
+            <button class="btn btn-danger" id="deleteBtn">Удалить</button>
+            <button class="btn btn-secondary" id="editBtn">Изменить</button>
+            <button class="btn btn-primary" id="openBtn">Открыть</button>
+        </div>
+    </section>
+
+    <div class="modal-overlay hidden" id="editModal">
+        <div class="modal">
+            <h2>Изменить привычку</h2>
+            <label for="editName">Новое название</label>
+            <input type="text" id="editName">
+
+            <label for="editDuration">Новая длительность (дней)</label>
+            <input type="number" id="editDuration" min="1">
+
+            <div class="modal-actions">
+                <button class="btn btn-ghost" data-close="editModal">Отмена</button>
+                <button class="btn btn-primary" id="updateHabitBtn">Обновить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="detailsModal">
+        <div class="modal modal-wide">
+            <h2 id="detailsTitle">Детали</h2>
+            <p class="details-sub">Название привычки</p>
+            <p class="details-name" id="detailsName"></p>
+            <p class="details-sub" id="detailsDuration"></p>
+
+            <div class="calendar" id="calendar"></div>
+
+            <div class="modal-actions">
+                <button class="btn btn-ghost" data-close="detailsModal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
